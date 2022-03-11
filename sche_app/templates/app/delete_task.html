@@ -1,0 +1,16 @@
+{% extends 'app/base.html' %}
+{% block content %}
+
+<h1>おしごとのじょうほーを消しちゃうよ</h1>
+<p>{{ object.task }}をほんとに消すと？</p>
+<p>注）{{ object.task }}が登録されているスケジュールも同時に削除されます。</p>
+<form action="" method='post'>
+    {% csrf_token %}
+    <button type='submit' class='submit delete'>削除する</button>
+</form>
+
+<div>
+    <p><a href="Javascript:history.back()">&lt; 戻る</a></p>
+</div>
+
+{% endblock %}

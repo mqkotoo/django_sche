@@ -1,0 +1,42 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<div>
+    <a href="{% url 'sche_app:index' %}">ホームに戻る</a>
+</div>
+
+<h1>スケジュール</h1>
+
+<form action="{% url 'sche_app:new_sche' %}" method="POST">
+
+    {% csrf_token %}
+
+    <table>
+        <tr>
+            <th>日時</th>
+            <td>{{ form.time }}</td>
+        </tr>
+
+        <tr>
+            <th>内容</th>
+            <td>{{ form.task }}</td>
+        </tr>
+
+        <tr>
+            <th>仕事量</th>
+            <td>{{ form.amount }}</td>
+        </tr>
+
+        <tr>
+            <th>作業者</th>
+            <td>{{ form.worker }}</td>
+        </tr>
+
+    </table>
+
+    <button type="submit" class="btn">保存</button>
+    
+</form>
+
+{% endblock %}

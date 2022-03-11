@@ -1,0 +1,37 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<div>
+    <a href="{% url 'sche_app:index' %}">ホームに戻る</a>
+</div>
+
+<h1>おしごとないようのへんしゅー</h1>
+
+<form action="{% url 'sche_app:edit_task' object.id %}" method="POST">
+
+    {% csrf_token %}
+
+    <table>
+        <tr>
+            <th>内容</th>
+            <td>{{ form.task }}</td>
+        </tr>
+
+        <tr>
+            <th>単位</th>
+            <td>{{ form.unit }}</td>
+        </tr>
+
+        <tr>
+            <th>ポイント</th>
+            <td>{{ form.point }}</td>
+        </tr>
+
+    </table>
+
+    <button type="submit" class="btn">保存</button>
+    
+</form>
+
+{% endblock %}

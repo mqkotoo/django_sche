@@ -1,0 +1,51 @@
+{% extends './base.html' %}
+
+
+{% block content %} 
+
+<h1>すけじゅーる</h1>
+    <table border="1">
+        <tr>
+            <th>日時</th><th>内容</th><th>仕事量</th><th>作業中</th><th>編集</th><th>削除</th>
+        </tr>
+
+{% for schedule in object_list %}
+    <tr>
+        <td>{{ schedule.time| date:'Y/m/d' }}</td>
+        <td>{{ schedule.task }}</td>
+        <td>{{ schedule.amount }}  {{ schedule.task.unit }}</td>
+        <td>{{ schedule.worker }}</td>
+        <td><a href="{% url 'sche_app:edit_sche' schedule.id %}">編集</a></td>
+        <td><a href="{% url 'sche_app:delete_sche' schedule.id %}">削除</a></td>
+
+    </tr>
+{% endfor %}
+    </table>
+
+    <a class="btn btn-primary" href="{% url 'sche_app:new_sche' %}">スケジュール作成</a>
+
+<h2>仕事情報</h2>
+
+<table border="1">
+    <tr>
+        <th>仕事内容</th>
+        <th>単価</th>
+        <th>ポイント</th>
+    </tr>
+    {% for task in object_list2 %}
+    <tr>
+        <td>{{ task.task }}</td>
+        <td>{{ task.unit }}</td>
+        <td>{{ task.point }}</td>
+        <td><a class="btn btn-primary" href="{% url 'sche_app:edit_task' task.id %}">編集</a></td>
+        <td><a class="btn btn-primary" href="{% url 'sche_app:delete_task' task.id %}">削除</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+    <a class="btn btn-primary" href="{% url 'sche_app:new_task' %}">あたらしいおしごとーー</a>
+
+
+{% endblock %}
+
+
